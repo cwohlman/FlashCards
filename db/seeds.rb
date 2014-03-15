@@ -29,4 +29,19 @@ u.save!
 
 end
   
+(1..100).each do |i|
+  q = Question.new(
+      question_text: "What is the answer to #{i}",
+      answer_text: "The answer is #{i}",
+      category: "cat#{i % 5}"
+    )
+  q.save
+  (1..5).each do |t|
+    q.tags.create(
+        tagname: "tag#{t}"
+      )
+  end
+  puts "#{i} test questions created..." if (i % 100 == 0)
+  puts "#{i * 5} test tags created..." if (i % 100 == 0)
 
+end
