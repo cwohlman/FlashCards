@@ -2,3 +2,7 @@
 <p>Find me in app/views/learn/nextQuestion.html.erb</p>
 <div class="question"></div>
 <div class="answers"></div>
+
+<script type="text/javascript">
+	setupQuestions(<%= raw @answers.to_json %>)
+</script>

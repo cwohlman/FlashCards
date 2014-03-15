@@ -5,12 +5,14 @@
 
 window.setupQuestions = (answers) =>
 	question = answers[0]
+	answeredCorrectly = true
 	onAnswer = (x) =>
 		$('.answers .well').removeClass('error')
 		if x.data == question.answer_text
 			$(x.target).addClass("success")
-			window.loadNextQuestion()
+			window.loadNextQuestion(question, answeredCorrectly)
 		else
+			answeredCorrectly = false
 			$(x.target).addClass("error")
 
 	answerElements = answers.map((a) => 
@@ -18,3 +20,11 @@ window.setupQuestions = (answers) =>
 	)
 	$('.question').text(question.question_text)
 	$('.answers').empty().append(answerElements)
+
+window.loadNextQuestion = (question, success) =>
+	# TODO: save answered state
+	# TODO: use multiple deferreds to ensure success message lasts for at least 250 ms
+	$.ajax({
+		url: "nextQuestion.json",
+		success: window.setupQuestions
+	});
