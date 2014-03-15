@@ -1,0 +1,41 @@
+<h1>Listing questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Question text</th>
+      <th>Answer text</th>
+      <th>Picture url</th>
+      <th>Audio url</th>
+      <th>Video url</th>
+      <th>Category</th>
+      <th>User difficulty</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.user_id %></td>
+        <td><%= question.question_text %></td>
+        <td><%= question.answer_text %></td>
+        <td><%= question.picture_url %></td>
+        <td><%= question.audio_url %></td>
+        <td><%= question.video_url %></td>
+        <td><%= question.category %></td>
+        <td><%= question.user_difficulty %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>
