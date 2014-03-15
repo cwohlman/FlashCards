@@ -1,6 +1,9 @@
 FlexCards::Application.routes.draw do
+  get "learn/index"
+  get "learn/nextQuestion"
+  get "learn/saveQuestion"
   resources :tags
-
+  resources :learn
   resources :questions
 
   root "pages#home"    
